@@ -1,0 +1,110 @@
+js_content = """function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+    heart.innerText = '💖';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+}
+setInterval(createHeart, 500);
+
+function showPopup() {
+    const popup = document.getElementById('popup');
+    const audio = document.getElementById('bgMusic');
+    popup.classList.add('active');
+    document.getElementById('intro').classList.add('hide');
+    audio.volume = 0;
+    audio.play();
+    let fadeIn = setInterval(() => {
+        if (audio.volume < 1) {
+            audio.volume = Math.min(1, audio.volume + 0.05);
+        } else {
+            clearInterval(fadeIn);
+        }
+    }, 100);
+}
+
+function hidePopup() {
+    const popup = document.getElementById('popup');
+    const audio = document.getElementById('bgMusic');
+    popup.classList.remove('active');
+    document.getElementById('intro').classList.remove('hide');
+    let fadeOut = setInterval(() => {
+        if (audio.volume > 0) {
+            audio.volume = Math.max(0, audio.volume - 0.05);
+        } else {
+            clearInterval(fadeOut);
+            audio.pause();
+        }
+    }, 100);
+}
+
+function revealPhotos() {
+    const section = document.getElementById('morePhotos');
+    const arrow = document.getElementById('arrowDown');
+    section.classList.remove('hidden');
+    void section.offsetWidth;
+    section.classList.add('show');
+    arrow.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const canvas = document.getElementById('bgCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resizeCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const dots = Array.from({ length: 60 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+    }));
+
+    function drawDots() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+        dots.forEach(dot => {
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+            ctx.fill();
+            dot.x += dot.dx;
+            dot.y += dot.dy;
+            if (dot.x < 0 || dot.x > width) dot.dx *= -1;
+            if (dot.y < 0 || dot.y > height) dot.dy *= -1;
+        });
+        requestAnimationFrame(drawDots);
+    }
+
+    drawDots();
+
+    const startDate = new Date("2023-05-01T00:00:00");
+    function updateCountdown() {
+        const now = new Date();
+        const diff = now - startDate;
+        const years = now.getFullYear() - startDate.getFullYear();
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 365;
+        const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+        const minutes = Math.floor(diff / (1000 * 60)) % 60;
+        const seconds = Math.floor(diff / 1000) % 60;
+        document.getElementById('years').textContent = years;
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+});
+"""
