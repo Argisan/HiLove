@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Anniversary!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <div id="scrollProgress"></div>
+  <div id="intro">
+    <h1>Happy Anniversary! 💖</h1>
+    <div class="gift" onclick="showPopup()">🎁</div>
+    <div id="countdown">
+      <p>We’ve been together for:</p>
+      <h2><span id="years">0</span> year</h2>
+      <h3>
+        <span id="days">0</span> days,
+        <span id="hours">0</span> hrs,
+        <span id="minutes">0</span> mins,
+        <span id="seconds">0</span> secs
+      </h3>
+    </div>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="image-gallery">
+      <img src="Messenger_creation_6EAD5BAE-16B0-44D0-9AEC-97A54CE20F3E.jpeg" alt="Memory 1" />
+      <img src="Messenger_creation_3956A3B1-2892-40A4-A2B5-CA49079BADDD.jpeg" alt="Memory 2" />
+      <img src="Messenger_creation_E507EB96-4C76-464A-96F0-FD0272D77439.jpeg" alt="Memory 3" />
+      <img src="IMG_20241023_103007_845.jpg" alt="Memory 4" />
+    </div>
+    <div class="popup-message">
+      <span id="typewriter"></span>
+    </div>
+    <button class="close-btn" onclick="hidePopup()">Close</button>
+  </div>
+
+  <section id="photoGallery">
+    <h2><br> Our Photo Journey</h2>
+    <div class="slider">
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <div class="slides" id="slides">
+        <img src="Messenger_creation_B7F1CAA4-791C-424A-A57A-812150EBA1BB.jpeg" alt="Slide 1" />
+        <img src="Messenger_creation_6EAD5BAE-16B0-44D0-9AEC-97A54CE20F3E.jpeg" alt="Slide 2" />
+        <img src="IMG_20241021_202202_010.jpg" alt="Slide 3" />
+        <img src="Screenshot_20250520-182806.jpg" alt="Slide 4" />
+        <img src="Screenshot_20250520-182838.jpg" alt="Slide 5" />
+        <img src="IMG_20241020_173309_352.jpg" alt="Slide 6" />
+        <img src="Messenger_creation_210CE0AF-14DF-41E7-AD58-DCDDCA510ED4.jpeg" alt="Slide 7" />
+        <img src="Messenger_creation_7E17DDA5-2628-407F-994A-F571CFF9CF88.jpeg" alt="Slide 8" />
+        <img src="IMG_20241022_170839_475.jpg" alt="Slide 9" />
+      </div>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </section>
+<section id="videoGallery">
+  <h2>Our Moments in Motion</h2>
+  <div class="video-wrapper" style="display:flex; gap: 20px;">
+
+    <!-- Local MP4 video -->
+    <iframe
+       width="360"
+      height="640"
+      src="https://www.youtube.com/embed/iqFfrg5b9Wk"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"
+      >
+    </iframe>
+
+    <!-- YouTube Shorts embed -->
+    <iframe
+      width="360"
+      height="640"
+      src="https://www.youtube.com/embed/xG4avBOOhgg"
+      title="YouTube Shorts video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"
+      >
+    </iframe>
+  </div>
+</section>
+  <audio id="bgMusic" src="vid.mp3" loop></audio>
+  <script src="script.js"></script>
+</body>
+</html>
